@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CANTIM Restaurante – Cardápio</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500&family=Kaushan+Script&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<style>
+:root{--cr:#efe0c3;--cd:#e6d0a8;--br:#2d1a0f;--go:#e8a812;--ru:#b5471f;--ink:#4a2a18;--mu:#7d6552}
+html{scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:var(--cr);color:var(--ink);font-family:Barlow,system-ui,sans-serif}
+.hero{background:radial-gradient(circle,var(--go) 9px,transparent 10px) 0 0/46px 46px,var(--cr);padding:28px 14px;border-bottom:6px solid var(--go);position:relative}
+.arch{max-width:520px;margin:0 auto;background:var(--br);border:5px solid var(--go);border-radius:200px 200px 14px 14px;text-align:center;padding:48px 20px 30px;color:var(--cr)}
+.sm{font:600 12px 'Barlow Condensed';letter-spacing:.4em;color:var(--go);text-transform:uppercase}
+.logo{font:64px/1.1 'Kaushan Script',cursive}.rest{font:22px 'Kaushan Script';margin-top:-6px}
+.arch h1{font:italic 600 44px 'Playfair Display',serif;color:var(--go);margin:14px 0 4px}
+.arch p{font:italic 15px 'Playfair Display',serif;margin:8px 0 0}
+#adm{position:absolute;top:10px;right:10px;background:var(--br);color:var(--go);border:1px solid var(--go);border-radius:18px;padding:6px 12px;font:600 12px 'Barlow Condensed';cursor:pointer;letter-spacing:.1em}
+.welcome{background:var(--br);color:var(--cr);text-align:center;padding:26px 16px}
+.welcome h2{font:italic 600 28px 'Playfair Display',serif;color:var(--go);margin:0 0 8px}.welcome p{max-width:640px;margin:0 auto;line-height:1.6;font-size:15px}
+nav{position:sticky;top:0;z-index:5;background:var(--br);padding:10px;display:flex;gap:8px;overflow-x:auto}
+nav a{-webkit-tap-highlight-color:transparent;cursor:pointer;touch-action:manipulation;white-space:nowrap;color:var(--cr);text-decoration:none;font:600 13px 'Barlow Condensed';letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border:1px solid #6a4a35;border-radius:16px}
+nav a:hover{background:var(--ru);border-color:var(--ru)}
+main{max-width:1000px;margin:0 auto;padding:14px 16px 90px}
+#q{width:100%;padding:12px 18px;border:1px solid #cdb78f;border-radius:24px;background:#f8efdc;font:15px Barlow;color:var(--ink);margin:6px 0}
+h2.c{font:italic 600 32px 'Playfair Display',serif;color:var(--br);margin:30px 0 2px;border-bottom:2px solid var(--ru);padding-bottom:4px}
+.note{font-size:13px;color:var(--mu);margin:6px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-top:12px}
+.it{background:var(--cd);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.it img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:zoom-in;display:block}
+.bd{padding:12px 14px;display:flex;justify-content:space-between;gap:10px}
+.nm{font:600 17px 'Barlow Condensed';letter-spacing:.06em;text-transform:uppercase;color:var(--br)}
+.ds{font-size:13px;color:var(--mu);margin-top:3px;line-height:1.4}
+.pr{font:600 18px 'Barlow Condensed';color:var(--ru);white-space:nowrap}
+.ab{display:flex;gap:6px;padding:0 14px 12px;flex-wrap:wrap}
+button.b{font:600 12px 'Barlow Condensed';letter-spacing:.08em;border:1px solid var(--ru);color:var(--ru);background:transparent;border-radius:14px;padding:5px 11px;cursor:pointer}
+button.b.d{border-color:#a22;color:#a22}
+.cb{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+#bar{position:fixed;left:0;right:0;bottom:0;background:var(--br);padding:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;z-index:9}
+#bar button{background:var(--go);border:0;border-radius:16px;padding:8px 14px;font:600 13px 'Barlow Condensed';letter-spacing:.08em;cursor:pointer}
+#bar[hidden]{display:none}
+footer{background:var(--br);color:var(--cr);text-align:center;padding:26px 16px 100px;font-size:14px;line-height:1.8}
+footer b{color:var(--go);font:600 12px 'Barlow Condensed';letter-spacing:.3em}
+footer a{color:var(--go)}
+dialog{border:3px solid var(--go);border-radius:14px;background:var(--cr);color:var(--ink);width:min(440px,92vw)}
+dialog label{display:block;font-size:13px;margin:10px 0 2px}dialog input,dialog textarea{width:100%;padding:9px;border:1px solid #cdb78f;border-radius:8px;font:15px Barlow}
+.row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+#lb{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:30;padding:16px}#lb img{max-width:100%;max-height:100%;border-radius:8px}
+#t{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:var(--br);color:#fff;padding:10px 16px;border-radius:18px;display:none;z-index:40;font-size:13px}
+.fl,.fr{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;z-index:8}
+.fl{left:14px}.fr{right:14px}
+body.adm .fl,body.adm .fr{bottom:120px}
+.sb{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px #0006;transition:transform .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;text-decoration:none;cursor:pointer}
+.sb:hover,.sb:active{transform:scale(1.1)}.sb svg{width:30px;height:30px;fill:#fff}
+.sb.ig{background:linear-gradient(45deg,#f9a03c,#e1306c 55%,#833ab4)}.sb.wa{background:#25d366}
+.sb.if{background:#ea1d2c;color:#fff;font:italic 700 16px Barlow,sans-serif;letter-spacing:-.03em}
+#pl{position:fixed;top:calc(62px + env(safe-area-inset-top,0px));left:10px;z-index:8;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;padding:0}
+#pl .c{width:48px;height:48px;border-radius:50%;background:var(--br);border:2px solid var(--go);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px #0005;animation:bob 2.4s ease-in-out infinite;transition:transform .3s,box-shadow .3s}
+#pl svg,.fp svg{width:26px;height:26px;fill:var(--go);stroke:#2d1a0f;stroke-width:1}
+#pl small{font:600 10px 'Barlow Condensed';letter-spacing:.15em;color:var(--br);background:var(--go);border-radius:8px;padding:1px 7px}
+#pl.pop .c{transform:scale(1.35);box-shadow:0 0 0 6px #e8a81266,0 0 22px 8px #e8a812aa;animation:none}
+#pl.go{visibility:hidden}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-6deg)}}
+.fp{position:fixed;left:0;top:0;width:44px;height:44px;z-index:60;pointer-events:none;filter:drop-shadow(0 4px 6px #0006)}.fp svg{width:44px;height:44px}
+#gm{position:fixed;inset:0;background:#2d1a0fd9;display:flex;align-items:center;justify-content:center;z-index:50;animation:gi .35s}
+#gm[hidden]{display:none}@keyframes gi{from{opacity:0;transform:scale(.7)}}
+.gp{position:relative;background:var(--br);border:4px solid var(--go);border-radius:18px;padding:12px 12px 10px;text-align:center;color:var(--cr)}
+.gp h3{margin:0 30px 8px;font:italic 600 22px 'Playfair Display',serif;color:var(--go)}
+#gc{display:block;width:min(88vw,340px,calc((100vh - 140px)*.696));height:auto;border-radius:10px;touch-action:none;cursor:pointer}
+#gx{position:absolute;top:8px;right:10px;background:none;border:0;color:var(--go);font-size:24px;line-height:1;cursor:pointer}
+.gp p{margin:8px 0 0;font-size:12px;opacity:.85}
+@media (prefers-reduced-motion:reduce){#pl .c{animation:none}}
+</style></head><body>
+<div class="hero"><button id="adm">ADMIN</button><button id="pl" aria-label="Mini game: jogue enquanto espera"><span class="c"><svg viewBox="0 0 24 24"><path d="M21.5 2.5L2.5 10l7 3 3 7z"/></svg></span><small>JOGAR</small></button>
+<div class="arch"><div class="sm">Belo Horizonte · MG</div><div class="logo">Cantim</div><div class="rest">Restaurante</div>
+<h1>Cardápio</h1><div class="sm" id="unit"></div><p>Sabores tradicionais, porções generosas e receitas exclusivas da casa</p></div></div>
+<div class="welcome"><h2>Que bom ter você no Cantim!</h2><p>Aqui é que nem casa de mineiro: chegou, puxa a cadeira e fica à vontade. A comida sai da panela com capricho, a cerveja vem gelada e a conversa não tem hora pra acabar. A casa é sua.</p></div>
+<nav id="nav"></nav>
+<main><input id="q" type="search" placeholder="Buscar no cardápio…"><div id="menu"></div></main>
+<footer><b>RESERVAS E EVENTOS</b><br>WhatsApp <a href="https://wa.me/5531984017604">(31) 98401-7604</a> · Instagram <a href="https://instagram.com/cantimbh">@cantimbh</a><br><b>BURITIS</b><br>R. Henrique Badaró Portugal, 418 · Belo Horizonte<br><b>SAVASSI</b><br>Av. Getúlio Vargas, 809 · Belo Horizonte<br>Espaço Kids com monitora · Pet friendly · Valores em R$</footer>
+<div id="bar" hidden><button id="bc">+ Categoria</button><button id="bu">Editar unidades</button><button id="bd">Baixar menu.json</button><button id="br">Restaurar padrão</button><button id="bo">Sair</button></div>
+<dialog id="dlg"><h3 id="dt" style="margin:0;font-family:'Playfair Display';font-style:italic"></h3>
+<label>Nome<input id="fn"></label><label>Preço (R$)<input id="fp" placeholder="ex.: 59,00"></label><label>Descrição<textarea id="fd" rows="3"></textarea></label>
+<div class="row"><button class="b" id="fs">Salvar</button><button class="b" id="fc">Cancelar</button><button class="b d" id="fx">Excluir prato</button><button class="b d" id="fr">Remover foto</button></div></dialog>
+<div id="gm" hidden><div class="gp"><button id="gx" aria-label="Fechar">×</button><h3>Voo do Cantim</h3><canvas id="gc"></canvas><p>Toque (ou espaço) para voar · desvie dos coqueiros</p></div></div>
+<div class="fl">
+<a class="sb ig" href="https://www.instagram.com/cantimbh?utm_source=ig_web_button_share_sheet&amp;bqrl=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram do Cantim" title="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.2-3.4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg></a>
+<a class="sb wa" href="https://wa.me/5531984017604?text=Ol%C3%A1%2C%20vim%20pelo%20card%C3%A1pio%20do%20Cantim!" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp do Cantim" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.200l-.3-.2-3 .8.8-2.9-.2-.3A8.200 8.200 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100-1.400-.7-2.300-1.200-3.200-2.800-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.100-.7.300-.8.800-1 1.700-.9 2.700.4 1.500 1.200 2.700 2.600 3.800 2 1.600 3.500 1.900 4.600 1.800.7-.1 1.600-.7 1.800-1.300.2-.6.200-1.100.1-1.200 0-.1-.2-.2-.5-.4z"/></svg></a>
+</div>
+<div class="fr"><a class="sb if" href="https://www.ifood.com.br/delivery/belo-horizonte-mg/restaurante-cantim---a-melhor-parmegiana-de-bh-buritis/ead5181e-d33c-47e8-8cdb-ab464a043663?utm_medium=share" target="_blank" rel="noopener noreferrer" aria-label="Peça no iFood" title="Peça no iFood">iFood</a></div>
+<div id="lb"><img alt=""></div><input type="file" id="file" accept="image/*" hidden><div id="t"></div>
+<script>
+const D=`#Assinatura Cantim|Os clássicos que fizeram a fama da casa
+Pastel do Cantim · 12 / 05 un.|59,00 / 25,00|Pastéis da casa, fritos na hora e bem recheados: queijo ou carne.
+Rabada do Bilica|44,00|Rabada de boi (200 g) cozida com batata, macia de desmanchar. Acompanha pão.
+Pescoço do Merinho|32,00|Pescoço de peru (250 g) cozido com batata, cheio de sabor. Acompanha pão.
+Maçã dos 7 Anões|44,00|A maçã de peito (170 g) tradicional do Cantim: grelhada, assada e acebolada, com batata sauté.
+Sua Batata Está Assando|25,00|Duas batatas assadas, recheadas com bacon e requeijão cremoso.
+#Fritinhos|Temos meia porção (60% do preço)
+Pastel de Angu de Itabirito · 12 / 05 un.|72,00 / 30,00|Receita tradicional mineira: carne, queijo, frango com requeijão ou misto.
+Bolinho de Mandioca · 12 / 05 un.|69,00 / 29,00|Douradinho por fora, macio por dentro: carne, queijo ou misto.
+Bolinho de Bacalhau · 15 / 06 un.|69,00 / 29,00|Crocante por fora, cremoso por dentro.
+Croquete de Carne · 12 / 05 un.|73,00 / 31,00|Recheado com muçarela que derrete a cada mordida.
+Frango Crocante|68,00|Iscas de filé de peito empanadas e sequinhas, com molho tártaro.
+Frango à Passarinho|69,00|Frango frito e bem temperado, com cebola e alho crocante (opcional).
+Torresmo de Barriga|78,00|Barriga de porco frita e pururuca: o clássico do boteco.
+Torradinha da Casa|25,00|Pão francês tostado com pasta de alho, salsinha e parmesão.
+#Batatas|Temos meia porção (60% do preço)
+Batata Frita|47,00|Porção generosa de batata frita, sequinha e dourada.
+Batata Chips|55,00|Batatas fritas na hora, bem crocantes.
+Batata Frita com Bacon|51,00|Batata frita coberta com bacon crocante.
+Batata com Bacon e Queijo|59,00|Batata frita com bacon crocante e queijo derretido por cima.
+#Da Chapa e da Panela|Petiscos · meia porção: 60% do preço
+Filé com Fritas|118,00|Filé grelhado e acebolado com batata frita sequinha.
+Picanha com Fritas|160,00|Picanha suculenta na chapa, com batata frita.
+Picanha com Provolone e Abacaxi|164,00|Picanha grelhada com provolone derretido e abacaxi.
+Carne de Sol com Mandioca|86,00|Carne de sol na chapa, com mandioca cozida ou frita.
+Carne de Sol com Batata Recheada|96,00|Carne de sol na chapa e batata recheada com bacon e requeijão.
+Língua ao Vinho|75,00|Língua macia ao molho madeira com vinho tinto seco. Acompanha pão fatiado.
+Carne de Panela ao Molho|82,00|Carne de panela macia no molho, com gostinho de comida de vó. Acompanha pão fatiado.
+Maçã de Peito ao Molho Especial|88,00|Ao molho especial da casa, com batata chips e pão.
+Linguiça Artesanal com Mandioca|71,00|Linguiça artesanal na chapa, com mandioca frita ou cozida.
+Almôndegas ao Molho Especial|79,00|Almôndegas caseiras ao molho especial da casa.
+Moela ao Molho Sugo|62,00|Moela macia cozida no molho de tomate.
+Uai Teriyaki · Comida di Buteco 2022|65,00|Filezinho suíno empanado e crocante, recheado com queijo muçarela e tomate seco, coberto com couve crispy e servido com molho teriyaki.
+#Do Rio
+Iscas de Tilápia|78,00|Iscas de tilápia empanadas, servidas com molho tártaro.
+Ceviche|51,00|Tilápia marinada no limão siciliano com coentro, tomate e cebola roxa. Acompanha batata chips.
+#Caldos|Individuais
+Dobradinha com Feijão Branco|35,00|Dobradinha macia cozida com feijão branco, num caldo encorpado.
+Feijão|32,90|Caldo de feijão cremoso e bem temperado, com pedacinhos de linguiça.
+Mandioca com Carne Desfiada|32,90|Caldo de mandioca cremoso e bem temperado, com carne desfiada.
+#Gratinados|Todos acompanham a torradinha da casa · Temos meia porção (60% do preço)
+Filé ao Molho Gorgonzola|145,00|Iscas de filé mignon grelhadas no molho branco com gorgonzola, gratinadas.
+Filé Mignon com Requeijão|145,00|Iscas de filé mignon no molho branco com requeijão, gratinadas.
+Filé aos 4 Queijos|145,00|Filé mignon no molho branco com prato, muçarela, gorgonzola e requeijão.
+Frango ao Molho Gorgonzola|97,00|Iscas de filé de frango no molho branco com gorgonzola, gratinadas.
+Filé Bacana · 300 g|145,00|Iscas de filé mignon empanadas sobre molho especial, gratinadas com gorgonzola ou requeijão.
+Frango Bacana · 300 g|99,00|Filé de frango empanado sobre molho especial, gratinado com gorgonzola ou requeijão.
+#Empanados da Casa|Temos meia porção (60% do preço)
+Filé Pium-í a Palito|145,00|Filé mignon recheado com tomate seco e búfala, empanado, com molho madeira e manjericão.
+Filé à Parmegiana a Palito|160,00|Tiras de filé mignon empanadas, com molho de tomate, presunto e muçarela gratinada.
+Frango à Parmegiana a Palito|110,00|Tiras de frango empanadas, com molho de tomate, presunto e muçarela gratinada.
+#À la Carte|Pratos individuais
+Mexidão Cantim|59,00|Arroz, feijão, ovos mexidos, carne desfiada, couve, linguiça, torresmo e ovo frito. Mineiríssimo!
+Filé à Piemontese|79,00|Bife de filé mignon grelhado, regado ao molho madeira com champignons, servido com arroz à piemontese cremoso e fritas.
+Lombinho com Tropeiro|59,00|Lombo suíno grelhado com feijão tropeiro, arroz, ovo frito, couve e fritas.
+Surprise de Frango|64,00|Filé de frango recheado com muçarela e presunto, empanado. Com arroz à grega e fritas.
+Tilápia Grelhada|65,00|Filé de tilápia grelhado, arroz branco e legumes na manteiga.
+Espaguete à Bolonhesa|45,00|Espaguete ao molho bolonhesa.
+Picanha à Brasileira · 150 g|97,00|Arroz com alho, fritas, farofa à brasileira e vinagrete.
+Ancho à Brasileira · 150 g|84,00|Arroz com alho, fritas, farofa à brasileira e vinagrete.
+#Pratos para Dividir|Temos meia porção (60% do preço)
+Filé Buritis · serve até 4|225,00|Bife de filé, palmito, banana e abacaxi empanados, com arroz cremoso de pupunha e batata chips.
+Tilápia Moda Chefe · serve 4|168,00|Filé de tilápia empanado e dourado, com arroz à grega e fritas.
+Filé à Parmegiana · serve 4|212,00|Filé mignon à milanesa ao molho tradicional de tomate, presunto e muçarela gratinada. Com purê de batata e arroz branco.
+Frango à Parmegiana · serve 4|150,00|Peito de frango à milanesa ao molho tradicional de tomate, presunto e muçarela gratinada. Com purê de batata e arroz branco.
+Filé Pium-í Família · serve 4|212,00|Filé mignon recheado com tomate seco e búfala, empanado, ao molho madeira. Arroz e fritas.
+Mexidão Especial · serve até 3|114,00|O Mexidão Cantim caprichado, com batata rústica e bifinho de filé.
+#À Brasileira para Dividir|Com arroz com alho, batata frita, farofa à brasileira e vinagrete
+Picanha à Brasileira · 600 g · serve até 4|325,00
+Picanha à Brasileira · 300 g · serve até 2|190,00
+Ancho à Brasileira · 600 g · serve até 4|240,00
+Ancho à Brasileira · 300 g · serve até 2|150,00
+#Guarnições
+Banana Empanada|6,00
+Ovo|6,00
+Pãozinho|5,00
+Purê|10,00
+Arroz Branco|20,00
+Bife de Ancho|20,00
+Omelete de Queijo|22,00
+Arroz à Grega|25,00
+Arroz à Piemontese|30,00
+Legumes Salteados|30,00
+Picanha 100 g|40,00
+#Prato Kids|Os pratos kids vêm com arroz, feijão, batata frita, alface e tomate
+Prato Kids com Filé|39,00
+Prato Kids com Frango|32,00
+Prato Kids com Peixe|34,00
+Espaguete Kids|33,00
+Espaço Kids · por criança|15,00|Brinquedão, fliperama e monitora, com tempo ilimitado.
+#Drinks Cantim
+Aperol Spritz|42,00|Aperol, espumante e água com gás.
+Arreda|45,00|Uva verde, Licor 43, vodka e suco de limão.
+Gin Cantim|45,00|Gin, licor de amêndoas, suco de limão, água tônica e espuma de gengibre.
+Old Fashioned|45,00|Bourbon, xarope de açúcar, suco de limão, angostura e cereja amarena.
+Negroni|40,00|Gin, Campari e vermute.
+Penicillin|40,00|Whisky, gengibre, água de mel, suco de limão e bala de gengibre.
+New York Sour|45,00|Whisky, suco de limão, xarope de açúcar, proteína e vinho tinto.
+Moscow Mule|40,00|Vodka, suco de limão e refrigerante de gengibre.
+Mojito|34,00|Rum, xarope de açúcar, hortelã, limão e água com gás.
+#Cervejas
+Chopp Brahma|16,00
+Brahma|16,00
+Original|19,00
+Stella|20,00
+Spaten|20,00
+Heineken|22,00
+Corona|22,00
+Stella Pure Gold|23,00
+#Cervejas Especiais|Consulte as opções com o garçom
+Long Neck|17,00|Heineken (comum e zero), Stella, Corona e Stella Pure Gold.
+Breedom Lager|15,00
+Breedom Session|20,00
+Breedom Low Carb|22,00
+Breedom IPA|26,00
+Laut|26,00
+#Caips|Morango, maracujá, abacaxi ou 3 limões (taiti, capeta e siciliano)
+Caipirinha com Smirnoff|35,00
+Caipirinha com Orloff|30,00
+Caipirinha com Cachaça|25,60
+#Sem Álcool
+Mulequices|34,00|Soda de baunilha, suco de limão e espuma de maçã verde.
+Sodas Italianas|34,00|Consulte os sabores.
+#Doses
+Rum|17,00
+Campari|18,00
+Smirnoff|20,00
+Domecq|20,00
+Absolut|26,00
+Tequila|26,00
+Gin Importado|27,00
+J. W. Red|28,00
+J. W. Black|36,00
+Jack Daniel's|36,00
+Licor 43|39,00
+#Cachaças
+Cachaça Cantim|16,00
+Salinas|18,00
+Seleta|18,00
+Cachaça Decisão|18,00
+#Bebidas
+Refrigerante Lata|8,00|Coca, Guaraná, Fanta, água tônica, Citrus, Sprite, soda limonada.
+Coca KS|8,50
+Suco Natural|14,00|Consulte os sabores.
+Jarra de Suco Natural|24,00|Consulte os sabores.
+Suco Lata|8,00|Pêssego, goiaba ou uva.
+Limão Espremido|5,00
+H2O|9,50
+Água Mineral|7,00
+Água com Gás|7,00
+Energético|20,00`;
+const $=s=>document.querySelector(s),e=(t,c,x)=>{const n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n};
+const H="91d675c4426d83349119bc886e0c5ef41a7481f5d16f35d2d59e2f302841da4f";let S,admin=sessionStorage.getItem("cantimAdm")==="1",tgt=null,cur=null;
+const parse=t=>t.trim().split("\n").reduce((a,l)=>{if(l[0]=="#"){const[n,s]=l.slice(1).split("|");a.push({n,s:s||"",g:[]})}else{const[n,p,d]=l.split("|");a[a.length-1].g.push({n,p:p||"",d:d||""})}return a},[]);
+const sha=async t=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)))].map(x=>x.toString(16).padStart(2,"0")).join("");
+const toast=t=>{const n=$("#t");n.textContent=t;n.style.display="block";clearTimeout(toast.k);toast.k=setTimeout(()=>n.style.display="none",3500)};
+function save(){try{localStorage.setItem("cantimMenu",JSON.stringify(S))}catch(x){toast("Memória cheia: baixe o menu.json e remova fotos.")}render()}
+function btn(p,t,f,c){const b=e("button","b"+(c?" d":""),t);b.onclick=f;p.append(b)}
+function render(){
+ const q=$("#q").value.toLowerCase(),m=$("#menu"),nv=$("#nav");m.textContent="";nv.textContent="";$("#unit").textContent=S.u;
+ $("#adm").hidden=admin;document.body.classList.toggle("adm",admin);$("#bar").hidden=!admin;
+ S.c.forEach((c,ci)=>{
+  const L=c.g.map((it,ii)=>[it,ii]).filter(([it])=>!q||(it.n+it.d+c.n).toLowerCase().includes(q));
+  if(!L.length&&(q||!admin))return;
+  const a=e("a",0,c.n);a.href="#c"+ci;a.onclick=ev=>{ev.preventDefault();const t=document.getElementById("c"+ci);if(!t)return;const y=t.getBoundingClientRect().top+window.pageYOffset-$("#nav").offsetHeight-8;window.scrollTo({top:Math.max(0,y),behavior:"smooth"})};nv.append(a);
+  const s=e("section");s.id="c"+ci;s.append(e("h2","c",c.n));if(c.s)s.append(e("div","note",c.s));
+  if(admin&&!q){const cb=e("div","cb");btn(cb,"+ Prato",()=>edit(ci,-1));
+   btn(cb,"Renomear",()=>{const n=prompt("Nome da categoria:",c.n);if(n===null)return;const x=prompt("Observação (opcional):",c.s);c.n=n.trim()||c.n;if(x!==null)c.s=x.trim();save()});
+   btn(cb,"↑",()=>{if(ci){[S.c[ci-1],S.c[ci]]=[S.c[ci],S.c[ci-1]];save()}});
+   btn(cb,"↓",()=>{if(ci<S.c.length-1){[S.c[ci+1],S.c[ci]]=[S.c[ci],S.c[ci+1]];save()}});
+   btn(cb,"Excluir categoria",()=>{if(confirm("Excluir a categoria e todos os pratos dela?")){S.c.splice(ci,1);save()}},1);s.append(cb)}
+  const g=e("div","grid");
+  L.forEach(([it,ii])=>{const k=e("div","it");
+   if(it.i){const im=e("img");im.src=it.i;im.alt=it.n;im.loading="lazy";im.onclick=()=>{$("#lb img").src=it.i;$("#lb").style.display="flex"};k.append(im)}
+   const b=e("div","bd"),l=e("div");l.append(e("div","nm",it.n));if(it.d)l.append(e("div","ds",it.d));b.append(l);if(it.p)b.append(e("div","pr","R$ "+it.p));k.append(b);
+   if(admin){const ab=e("div","ab");btn(ab,"Editar",()=>edit(ci,ii));btn(ab,it.i?"Trocar foto":"+ Foto",()=>{tgt=[ci,ii];$("#file").click()});k.append(ab)}
+   g.append(k)});
+  s.append(g);m.append(s)});
+ if(!m.children.length)m.append(e("p","note","Nenhum item encontrado."))}
+function edit(ci,ii){cur=[ci,ii];const it=ii<0?{n:"",p:"",d:""}:S.c[ci].g[ii];$("#fn").value=it.n;$("#fp").value=it.p;$("#fd").value=it.d;
+ $("#fx").hidden=ii<0;$("#fr").hidden=!it.i;$("#dt").textContent=ii<0?"Novo prato":"Editar prato";$("#dlg").showModal()}
+$("#fs").onclick=()=>{const n=$("#fn").value.trim();if(!n)return;const[ci,ii]=cur,o=ii<0?{}:S.c[ci].g[ii];Object.assign(o,{n,p:$("#fp").value.trim(),d:$("#fd").value.trim()});if(ii<0)S.c[ci].g.push(o);$("#dlg").close();save()};
+$("#fc").onclick=()=>$("#dlg").close();
+$("#fx").onclick=()=>{if(confirm("Excluir este prato?")){S.c[cur[0]].g.splice(cur[1],1);$("#dlg").close();save()}};
+$("#fr").onclick=()=>{delete S.c[cur[0]].g[cur[1]].i;$("#dlg").close();save()};
+const shrink=f=>new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const r=Math.min(1,800/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*r;c.height=im.height*r;c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL("image/jpeg",.7))};im.onerror=no;im.src=u});
+$("#file").onchange=async ev=>{const f=ev.target.files[0];ev.target.value="";if(!f||!tgt)return;try{S.c[tgt[0]].g[tgt[1]].i=await shrink(f);save();toast("Foto adicionada! Baixe o menu.json para publicar.")}catch(x){toast("Imagem inválida.")}};
+$("#adm").onclick=async()=>{const p=prompt("Senha do administrador:");if(p===null)return;if(await sha(p)===H){admin=true;sessionStorage.setItem("cantimAdm","1");render()}else toast("Senha incorreta.")};
+$("#bo").onclick=()=>{admin=false;sessionStorage.removeItem("cantimAdm");render()};
+$("#bc").onclick=()=>{const n=prompt("Nome da nova categoria:");if(n&&n.trim()){S.c.push({n:n.trim(),s:"",g:[]});save();scrollTo(0,document.body.scrollHeight)}};
+$("#bu").onclick=()=>{const u=prompt("Texto das unidades no topo:",S.u);if(u&&u.trim()){S.u=u.trim().toUpperCase();save()}};
+$("#bd").onclick=()=>{const a=e("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="menu.json";a.click();toast("Envie o menu.json para a pasta do site.")};
+$("#br").onclick=()=>{if(confirm("Apagar as alterações deste navegador e voltar ao cardápio publicado?")){localStorage.removeItem("cantimMenu");location.reload()}};
+$("#q").oninput=render;$("#lb").onclick=()=>$("#lb").style.display="none";
+const PL=`<svg viewBox="0 0 24 24"><path d="M21.5 2.5L2.5 10l7 3 3 7z"/></svg>`;
+const G=$("#gm"),cv=$("#gc"),cx=cv.getContext("2d"),GW=320,GH=460,GAP=170;cv.width=GW;cv.height=GH;let gs,raf,last;
+const best=()=>{try{return+localStorage.getItem("cantimBest")||0}catch(x){return 0}};
+const reset=()=>{gs={st:"ready",y:GH/2,vy:0,p:[],sc:0,f:0,t:0,lk:0}};
+function flap(){if(gs.st=="over"){if(gs.lk<=0)reset();return}if(gs.st=="ready")gs.st="play";gs.vy=-6.4}
+function over(){gs.st="over";gs.lk=30;const b=best();if(gs.sc>b)try{localStorage.setItem("cantimBest",gs.sc)}catch(x){}}
+function hit(o){const c=o.x+26,y=gs.y,px=80,r=9;
+ if(px+r>c-10&&px-r<c+10&&(y<o.t||y>o.t+GAP))return 1;
+ return[o.t,o.t+GAP].some(t=>Math.hypot(px-c,y-t)<r+20)}
+function palm(x,y0,y1,s){
+ cx.save();cx.lineCap="round";cx.beginPath();cx.moveTo(x,y0);cx.quadraticCurveTo(x+12,(y0+y1)/2,x,y1);
+ cx.strokeStyle="#7a4a24";cx.lineWidth=15;cx.stroke();cx.strokeStyle="#4e2d12";cx.lineWidth=15;cx.setLineDash([2,11]);cx.lineCap="butt";cx.stroke();cx.setLineDash([]);
+ [[-28,6],[-22,-8],[-9,-17],[9,-17],[22,-8],[28,6]].forEach(([ex,ey],i)=>{cx.beginPath();cx.moveTo(x,y1);cx.quadraticCurveTo(x+ex*.5,y1+s*(ey-14),x+ex,y1+s*(ey+8));cx.lineCap="round";cx.strokeStyle=i%2?"#1f6b2a":"#2f8f3a";cx.lineWidth=7;cx.stroke()});
+ cx.fillStyle="#5a3417";[[-4,4],[5,5]].forEach(([a,b])=>{cx.beginPath();cx.arc(x+a,y1+s*-b,4.5,0,7);cx.fill()});cx.restore()}
+function step(k){gs.t+=k;if(gs.lk>0)gs.lk-=k;
+ if(gs.st=="ready")gs.y=GH/2+Math.sin(gs.t/12)*7;
+ if(gs.st!="play")return;
+ gs.vy+=.38*k;gs.y+=gs.vy*k;gs.f+=k;
+ if(gs.f>=90){gs.f=0;gs.p.push({x:GW,t:50+Math.random()*(GH-14-100-GAP),s:0})}
+ gs.p.forEach(o=>{o.x-=2.5*k;if(!o.s&&o.x+52<80){o.s=1;gs.sc++}if(hit(o))over()});
+ gs.p=gs.p.filter(o=>o.x>-60);if(gs.y>GH-24||gs.y<-10)over()}
+function draw(){
+ cx.fillStyle="#efe0c3";cx.fillRect(0,0,GW,GH);cx.fillStyle="#e8a81233";
+ for(let y=20;y<GH;y+=46)for(let x=(y/46%2?0:23);x<GW;x+=46){cx.beginPath();cx.arc(x,y,7,0,7);cx.fill()}
+ gs.p.forEach(o=>{palm(o.x+26,0,o.t,-1);palm(o.x+26,GH-14,o.t+GAP,1)});
+ cx.fillStyle="#2d1a0f";cx.fillRect(0,GH-14,GW,14);cx.fillStyle="#e8a812";cx.fillRect(0,GH-14,GW,4);
+ cx.save();cx.translate(80,gs.y);cx.rotate(Math.max(-.5,Math.min(.9,gs.vy*.08)));cx.scale(1.5,1.5);
+ cx.fillStyle="#e8a812";cx.strokeStyle="#2d1a0f";cx.lineWidth=2;cx.beginPath();cx.moveTo(14,0);cx.lineTo(-12,-10);cx.lineTo(-6,0);cx.lineTo(-12,10);cx.closePath();cx.fill();cx.stroke();cx.restore();
+ cx.textAlign="center";cx.fillStyle="#2d1a0f";cx.font="600 38px 'Barlow Condensed',sans-serif";cx.fillText(gs.sc,GW/2,50);
+ if(gs.st!="play"){cx.fillStyle="#2d1a0fcc";cx.fillRect(30,GH/2+50,GW-60,gs.st=="over"?110:60);cx.fillStyle="#efe0c3";cx.font="600 20px 'Barlow Condensed',sans-serif";
+  if(gs.st=="ready")cx.fillText("TOQUE PARA DECOLAR",GW/2,GH/2+88);
+  else{cx.fillStyle="#e8a812";cx.fillText("FIM DE JOGO · "+gs.sc+" pts",GW/2,GH/2+82);cx.fillStyle="#efe0c3";cx.fillText("Recorde: "+Math.max(best(),gs.sc),GW/2,GH/2+110);cx.fillText("Toque para jogar de novo",GW/2,GH/2+138)}}}
+function loop(ts){const k=Math.min(2,(ts-last)/16.67||1);last=ts;step(k);draw();raf=requestAnimationFrame(loop)}
+function openGame(){G.hidden=false;document.body.style.overflow="hidden";reset();last=performance.now();raf=requestAnimationFrame(loop)}
+function closeGame(){cancelAnimationFrame(raf);G.hidden=true;document.body.style.overflow=""}
+cv.addEventListener("pointerdown",ev=>{ev.preventDefault();flap()});
+$("#gx").onclick=closeGame;G.addEventListener("click",ev=>{if(ev.target===G)closeGame()});
+document.addEventListener("keydown",ev=>{if(G.hidden)return;if(ev.key=="Escape")closeGame();else if(ev.code=="Space"||ev.key=="ArrowUp"){ev.preventDefault();flap()}});
+$("#pl").onclick=()=>{const b=$("#pl");if(b.classList.contains("pop"))return;
+ if(!b.animate||matchMedia("(prefers-reduced-motion:reduce)").matches){openGame();return}
+ const r=b.querySelector(".c").getBoundingClientRect(),x0=r.left+r.width/2,y0=r.top+r.height/2,x1=innerWidth/2,y1=Math.max(innerHeight/2,y0+120),R=Math.min(80,innerWidth/5),N=80,P=[];
+ b.classList.add("pop");
+ for(let i=0;i<=N;i++){const t=i/N,u=t*t*(3-2*t);let x=x0+(x1-x0)*u,y=y0+(y1-y0)*u;if(t>.3&&t<.7){const a=2*Math.PI*(t-.3)/.4;x+=R*Math.sin(a);y-=R*(1-Math.cos(a))}P.push([x,y])}
+ setTimeout(()=>{b.classList.add("go");const f=e("div","fp");f.innerHTML=PL;document.body.append(f);let pa=0,off=0;
+  const F=P.map((q,i)=>{const n=P[Math.min(i+1,N)],m=P[Math.max(i-1,0)];let a=Math.atan2(n[1]-m[1],n[0]-m[0])*180/Math.PI+45;a+=off;while(a-pa>180){a-=360;off-=360}while(a-pa<-180){a+=360;off+=360}pa=a;
+   return{transform:`translate(${q[0]-22}px,${q[1]-22}px) rotate(${a}deg) scale(${1+.7*i/N})`,offset:i/N}});
+  f.animate(F,{duration:2300,easing:"linear",fill:"forwards"}).onfinish=()=>{f.remove();b.classList.remove("pop","go");openGame()}},350)};
+(async()=>{let l=null;try{l=JSON.parse(localStorage.getItem("cantimMenu"))}catch(x){}
+ if(l&&l.c)S=l;else{try{const r=await fetch("menu.json?"+Date.now());if(r.ok){const j=await r.json();if(j&&j.c)S=j}}catch(x){}}
+ if(S&&(!S.u||/^(UNIDADE\s+)?(SAVASSI|BURITIS)$/i.test(S.u)))S.u="UNIDADES BURITIS · SAVASSI";
+ if(!S)S={u:"UNIDADES BURITIS · SAVASSI",c:parse(D)};if(!S.u||/^(SAVASSI|BURITIS)$/i.test(S.u.replace(/^UNIDADE\s+/i,"")))S.u="UNIDADES BURITIS · SAVASSI";render()})();
+</script></body></html>
