@@ -8,7 +8,7 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:var
 .hero{background:radial-gradient(circle,var(--go) 9px,transparent 10px) 0 0/46px 46px,var(--cr);padding:28px 14px;border-bottom:6px solid var(--go);position:relative}
 .arch{max-width:520px;margin:0 auto;background:var(--br);border:5px solid var(--go);border-radius:200px 200px 14px 14px;text-align:center;padding:48px 20px 30px;color:var(--cr)}
 .sm{font:600 12px 'Barlow Condensed';letter-spacing:.4em;color:var(--go);text-transform:uppercase}
-.logo{font:64px/1.1 'Kaushan Script',cursive}.rest{font:22px 'Kaushan Script';margin-top:-6px}
+.logo{font:64px/1.1 'Kaushan Script',cursive;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.rest{font:22px 'Kaushan Script';margin-top:-6px}
 .arch h1{font:italic 600 44px 'Playfair Display',serif;color:var(--go);margin:14px 0 4px}
 .arch p{font:italic 15px 'Playfair Display',serif;margin:8px 0 0}
 #adm{position:absolute;top:10px;right:10px;background:var(--br);color:var(--go);border:1px solid var(--go);border-radius:18px;padding:6px 12px;font:600 12px 'Barlow Condensed';cursor:pointer;letter-spacing:.1em}
@@ -76,7 +76,7 @@ body.adm .fl,body.adm .fr{bottom:120px}
 .ifm.open a:active{transform:scale(.96)}
 @media (prefers-reduced-motion:reduce){.ifm a,.sb.if{transition:none!important}}
 </style></head><body>
-<div class="hero"><button id="adm">ADMIN</button><button id="pl" aria-label="Mini game: jogue enquanto espera"><span class="c"><svg viewBox="0 0 24 24"><path d="M21.5 2.5L2.5 10l7 3 3 7z"/></svg></span><small>JOGAR</small></button>
+<div class="hero"><button id="adm" hidden>ADMIN</button><button id="pl" aria-label="Mini game: jogue enquanto espera"><span class="c"><svg viewBox="0 0 24 24"><path d="M21.5 2.5L2.5 10l7 3 3 7z"/></svg></span><small>JOGAR</small></button>
 <div class="arch"><div class="sm">Belo Horizonte · MG</div><div class="logo">Cantim</div><div class="rest">Restaurante</div>
 <h1>Cardápio</h1><div class="sm" id="unit"></div><p>Sabores tradicionais, porções generosas e receitas exclusivas da casa</p></div></div>
 <div class="welcome"><h2>Que bom ter você no Cantim!</h2><p>Aqui é que nem casa de mineiro: chegou, puxa a cadeira e fica à vontade. A comida sai da panela com capricho, a cerveja vem gelada e a conversa não tem hora pra acabar. A casa é sua.</p></div>
@@ -247,7 +247,7 @@ H2O|9,50
 Água com Gás|7,00
 Energético|20,00`;
 const $=s=>document.querySelector(s),e=(t,c,x)=>{const n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n};
-const H="91d675c4426d83349119bc886e0c5ef41a7481f5d16f35d2d59e2f302841da4f";let S,admin=sessionStorage.getItem("cantimAdm")==="1",tgt=null,cur=null;
+const H="91d675c4426d83349119bc886e0c5ef41a7481f5d16f35d2d59e2f302841da4f";let admVis=false,S,admin=sessionStorage.getItem("cantimAdm")==="1",tgt=null,cur=null;
 const parse=t=>t.trim().split("\n").reduce((a,l)=>{if(l[0]=="#"){const[n,s]=l.slice(1).split("|");a.push({n,s:s||"",g:[]})}else{const[n,p,d]=l.split("|");a[a.length-1].g.push({n,p:p||"",d:d||""})}return a},[]);
 const sha=async t=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)))].map(x=>x.toString(16).padStart(2,"0")).join("");
 const toast=t=>{const n=$("#t");n.textContent=t;n.style.display="block";clearTimeout(toast.k);toast.k=setTimeout(()=>n.style.display="none",3500)};
@@ -255,7 +255,7 @@ function save(){try{localStorage.setItem("cantimMenu",JSON.stringify(S))}catch(x
 function btn(p,t,f,c){const b=e("button","b"+(c?" d":""),t);b.onclick=f;p.append(b)}
 function render(){
  const q=$("#q").value.toLowerCase(),m=$("#menu"),nv=$("#nav");m.textContent="";nv.textContent="";$("#unit").textContent=S.u;
- $("#adm").hidden=admin;document.body.classList.toggle("adm",admin);$("#bar").hidden=!admin;
+ $("#adm").hidden=admin||!admVis;document.body.classList.toggle("adm",admin);$("#bar").hidden=!admin;
  S.c.forEach((c,ci)=>{
   const L=c.g.map((it,ii)=>[it,ii]).filter(([it])=>!q||(it.n+it.d+c.n).toLowerCase().includes(q));
   if(!L.length&&(q||!admin))return;
@@ -283,7 +283,7 @@ $("#fr").onclick=()=>{delete S.c[cur[0]].g[cur[1]].i;$("#dlg").close();save()};
 const shrink=f=>new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const r=Math.min(1,800/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*r;c.height=im.height*r;c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL("image/jpeg",.7))};im.onerror=no;im.src=u});
 $("#file").onchange=async ev=>{const f=ev.target.files[0];ev.target.value="";if(!f||!tgt)return;try{S.c[tgt[0]].g[tgt[1]].i=await shrink(f);save();toast("Foto adicionada! Baixe o menu.json para publicar.")}catch(x){toast("Imagem inválida.")}};
 $("#adm").onclick=async()=>{const p=prompt("Senha do administrador:");if(p===null)return;if(await sha(p)===H){admin=true;sessionStorage.setItem("cantimAdm","1");render()}else toast("Senha incorreta.")};
-$("#bo").onclick=()=>{admin=false;sessionStorage.removeItem("cantimAdm");render()};
+$("#bo").onclick=()=>{admin=false;admVis=false;sessionStorage.removeItem("cantimAdm");render()};
 $("#bc").onclick=()=>{const n=prompt("Nome da nova categoria:");if(n&&n.trim()){S.c.push({n:n.trim(),s:"",g:[]});save();scrollTo(0,document.body.scrollHeight)}};
 $("#bu").onclick=()=>{const u=prompt("Texto das unidades no topo:",S.u);if(u&&u.trim()){S.u=u.trim().toUpperCase();save()}};
 $("#bd").onclick=()=>{const a=e("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="menu.json";a.click();toast("Envie o menu.json para a pasta do site.")};
@@ -293,6 +293,7 @@ $("#q").oninput=render;$("#lb").onclick=()=>$("#lb").style.display="none";
 b.addEventListener("click",ev=>{ev.stopPropagation();set(!m.classList.contains("open"))});
 document.addEventListener("click",ev=>{if(m.classList.contains("open")&&!ev.target.closest(".fr"))set(false)});
 document.addEventListener("keydown",ev=>{if(ev.key=="Escape")set(false)})})();
+(()=>{let n=0,t;$(".logo").addEventListener("click",()=>{n++;clearTimeout(t);t=setTimeout(()=>n=0,900);if(n>=3){n=0;admVis=true;render()}})})();
 const PL=`<svg viewBox="0 0 24 24"><path d="M21.5 2.5L2.5 10l7 3 3 7z"/></svg>`;
 const G=$("#gm"),cv=$("#gc"),cx=cv.getContext("2d"),GW=320,GH=460,GAP=170;cv.width=GW;cv.height=GH;let gs,raf,last;
 const best=()=>{try{return+localStorage.getItem("cantimBest")||0}catch(x){return 0}};
